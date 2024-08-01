@@ -4,12 +4,12 @@
 #include <WiFiClientSecure.h>
 #include "cert.h"
 
-const char* ssid = "Fission Tech 2.4G";
-const char* password = "Dev@4fission_";
+const char* ssid = "SSID"; // your ssid
+const char* password = "Password"; // your password
 
 
-const char* versionURL = "https://raw.githubusercontent.com/hassanaansari/Fissiontech_hassan/main/esp32_ota/bin_version.txt";
-const char* firmwareURL = "https://raw.githubusercontent.com/hassanaansari/Fissiontech_hassan/main/esp32_ota/fw.bin";
+const char* versionURL = "https://raw.githubusercontent.com/hassanaansari/OTA_with_Github/main/esp32_ota/bin_version.txt";
+const char* firmwareURL = "https://raw.githubusercontent.com/hassanaansari/OTA_with_Github/main/esp32_ota/fw.bin";
 const char* currentVersion = "2.0";
 unsigned long previousMillis = 0;   // Stores the last time an update check was performed
 const long interval = 60000;   
@@ -102,6 +102,7 @@ void updateFirmware() {
 
 
 void yourActualCode() {
+  // write your code here
   digitalWrite(2, 1);
   delay(500);
   digitalWrite(2, 0);
