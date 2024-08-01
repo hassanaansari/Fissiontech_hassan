@@ -10,7 +10,7 @@ const char* password = "Dev@4fission_";
 
 const char* versionURL = "https://raw.githubusercontent.com/hassanaansari/Fissiontech_hassan/main/esp32_ota/bin_version.txt";
 const char* firmwareURL = "https://raw.githubusercontent.com/hassanaansari/Fissiontech_hassan/main/esp32_ota/fw.bin";
-const char* currentVersion = "2.1";
+const char* currentVersion = "2.0";
 unsigned long previousMillis = 0;   // Stores the last time an update check was performed
 const long interval = 60000;   
 
@@ -25,16 +25,17 @@ void setup() {
   }
 
   Serial.println("Connected to WiFi");
-  checkForUpdates();
+  // checkForUpdates();
 }
 
 void loop() {
+    yourActualCode();
+
   unsigned long currentMillis = millis();
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis;
     checkForUpdates();  // Check for updates every 5 minutes
   }
-  yourActualCode();
 
 }
 
@@ -102,7 +103,7 @@ void updateFirmware() {
 
 void yourActualCode() {
   digitalWrite(2, 1);
-  delay(500);
+  delay(100);
   digitalWrite(2, 0);
-  delay(500);
+  delay(100);
 }
