@@ -4,23 +4,19 @@
 #include <WiFiClientSecure.h>
 #include "cert.h"
 
-const char * ssid = "Fission Tech 2.4G";
-const char * password = "Dev@4fission_";
+const char* ssid = "Fission Tech 2.4G";
+const char* password = "Dev@4fission_";
 
 
 const char* versionURL = "https://raw.githubusercontent.com/hassanaansari/Fissiontech_hassan/main/esp32_ota/bin_version.txt";
 const char* firmwareURL = "https://raw.githubusercontent.com/hassanaansari/Fissiontech_hassan/main/esp32_ota/fw.bin";
-const char* currentVersion = "2.0";
-
-// const char* ssid = "your_SSID";
-// const char* password = "your_PASSWORD";
-// const char* versionURL = "https://raw.githubusercontent.com/your_username/your_repo/main/version.txt";
-// const char* firmwareURL = "https://raw.githubusercontent.com/your_username/your_repo/main/firmware.bin";
-// const char* currentVersion = "1.0.0"; // Change this to match your current version
+const char* currentVersion = "2.1";
+unsigned long previousMillis = 0;   // Stores the last time an update check was performed
+const long interval = 60000;   
 
 void setup() {
   Serial.begin(115200);
-  pinMode(2,OUTPUT);
+  pinMode(2, OUTPUT);
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
@@ -33,11 +29,12 @@ void setup() {
 }
 
 void loop() {
-  // Your main code here
-  digitalWrite(2,1);
-  delay(100);
-  digitalWrite(2,0);
-  delay(100);
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+    checkForUpdates();  // Check for updates every 5 minutes
+  }
 }
 
 void checkForUpdates() {
@@ -72,7 +69,7 @@ void updateFirmware() {
     int contentLength = http.getSize();
     bool canBegin = Update.begin(contentLength);
     if (canBegin) {
-      WiFiClient *client = http.getStreamPtr();
+      WiFiClient* client = http.getStreamPtr();
       size_t written = Update.writeStream(*client);
       if (written == contentLength) {
         Serial.println("Written : " + String(written) + " successfully");
@@ -99,4 +96,12 @@ void updateFirmware() {
   }
 
   http.end();
+}
+
+
+void yourActualCode() {
+  digitalWrite(2, 1);
+  delay(500);
+  digitalWrite(2, 0);
+  delay(500);
 }
