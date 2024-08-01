@@ -30,11 +30,12 @@ void setup() {
 
 void loop() {
   unsigned long currentMillis = millis();
-
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis;
     checkForUpdates();  // Check for updates every 5 minutes
   }
+  yourActualCode();
+
 }
 
 void checkForUpdates() {
