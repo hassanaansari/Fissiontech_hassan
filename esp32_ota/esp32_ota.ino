@@ -10,7 +10,7 @@ const char * password = "Dev@4fission_";
 
 const char* versionURL = "https://raw.githubusercontent.com/hassanaansari/Fissiontech_hassan/main/esp32_ota/bin_version.txt";
 const char* firmwareURL = "https://raw.githubusercontent.com/hassanaansari/Fissiontech_hassan/main/esp32_ota/fw.bin";
-const char* currentVersion = "2.2";
+const char* currentVersion = "2.0";
 
 // const char* ssid = "your_SSID";
 // const char* password = "your_PASSWORD";
@@ -35,9 +35,9 @@ void setup() {
 void loop() {
   // Your main code here
   digitalWrite(2,1);
-  delay(500);
+  delay(100);
   digitalWrite(2,0);
-  delay(500);
+  delay(100);
 }
 
 void checkForUpdates() {
