@@ -10,7 +10,7 @@ const char* password = "Dev@4fission_"; // your password
 
 const char* versionURL = "https://raw.githubusercontent.com/hassanaansari/OTA_with_Github/main/esp32_ota/bin_version.txt";
 const char* firmwareURL = "https://raw.githubusercontent.com/hassanaansari/OTA_with_Github/main/esp32_ota/fw.bin";
-const char* currentVersion = "2.0";
+const char* currentVersion = "2.1";
 unsigned long previousMillis = 0;   // Stores the last time an update check was performed
 const long interval = 60000;   
 String apiKey = "8298444";              //Add your Token number that bot has sent you on WhatsApp messenger
@@ -86,6 +86,7 @@ void updateFirmware() {
         Serial.println("OTA done!");
         if (Update.isFinished()) {
           Serial.println("Update successfully completed. Rebooting.");
+          message_to_whatsapp("Firmware Updated!");
           ESP.restart();
         } else {
           Serial.println("Update not finished? Something went wrong!");
